@@ -1,3 +1,4 @@
+import { random_number_arrays } from "@/functions/arrays";
 import AnswerModel from "./answer";
 
 export default class QuestionModel {
@@ -39,6 +40,16 @@ export default class QuestionModel {
             if (answer.revealed) return true;
         }
         return false;
+    }
+
+    random_answers(): QuestionModel {
+        const random_answers = random_number_arrays(this.#answer);
+        return new QuestionModel(
+            this.#id,
+            this.#question,
+            random_answers,
+            this.#correct
+        )
     }
 
     to_object() {
