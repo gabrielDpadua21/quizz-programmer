@@ -42,6 +42,21 @@ export default class QuestionModel {
         return false;
     }
 
+    respond_with(index: number) {
+        const correct = this.#answer[index].is_correct;
+        const answers = this.#answer.map((answer, i) => {
+            const seletedAnswer = index === i;
+            const shouldRevel = seletedAnswer || answer.is_correct;
+            return shouldRevel ? answer.reveal() : answer
+        });
+        return new QuestionModel(
+            this.#id,
+            this.#question,
+            answers,
+            correct
+        )
+    }
+
     random_answers(): QuestionModel {
         const random_answers = random_number_arrays(this.#answer);
         return new QuestionModel(
@@ -57,7 +72,8 @@ export default class QuestionModel {
         id: this.#id,
         question: this.#question,
         answer: this.#answer.map(aws => aws.to_object()),
-        correct: this.#correct
+        correct: this.#correct,
+        responded: this.is_responded
       }
     }
 }

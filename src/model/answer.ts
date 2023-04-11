@@ -33,6 +33,10 @@ export default class AnswerModel {
         return this.#revealed;
     }
 
+    reveal() {
+      return new AnswerModel(this.#value, this.#is_correct, true)
+    }
+
     to_object() {
       return {
         value: this.#value,
