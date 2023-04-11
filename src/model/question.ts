@@ -10,7 +10,7 @@ export default class QuestionModel {
         id: number, 
         question: string, 
         answer: AnswerModel[], 
-        correct: boolean
+        correct = false
     ) {
         this.#id = id;
         this.#question = question;
@@ -39,5 +39,14 @@ export default class QuestionModel {
             if (answer.revealed) return true;
         }
         return false;
+    }
+
+    to_object() {
+      return {
+        id: this.#id,
+        question: this.#question,
+        answer: this.#answer.map(aws => aws.to_object()),
+        correct: this.#correct
+      }
     }
 }
