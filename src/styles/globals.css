@@ -19,3 +19,11 @@ a {
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+
+.root-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

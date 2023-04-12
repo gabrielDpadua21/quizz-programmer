@@ -1,5 +1,6 @@
 import styles from '../styles/Question.module.css';
 import QuestionModel from "@/model/question";
+import Statement from './Statement';
 
 
 interface InterfaceQuestionProps {
@@ -12,9 +13,7 @@ const Question = (props: InterfaceQuestionProps) => {
     return (
         <>
             <div className={styles.question}>
-                <h1>
-                    Question
-                </h1>
+                <Statement text={question.question} />
             </div>
         </>
     )

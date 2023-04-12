@@ -16,7 +16,9 @@ export default function Home() {
   
   return (
     <>
-      <Question value={testQuestion}/>
+      <div className='root-container'>
+        <Question value={testQuestion}/>
+      </div>
     </>
   )
 }
