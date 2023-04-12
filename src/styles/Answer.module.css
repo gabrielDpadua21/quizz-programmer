@@ -1,3 +1,45 @@
 .answer {
     display: flex;
+    height: 100px;
+    margin: 10px;
+    width: 80%;
+    min-width: 500px;
+}
+
+.content {
+    display: flex;
+    flex: 1;
+    position: relative;    
+}
+
+.front, .back {
+    position: absolute;
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.front {
+    color: #000;
+    align-items: center;
+    padding: 15px;
+    background-color: rgba(255, 255, 255, 0.6);
+    border-radius: 12px;
+}
+
+.letter {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-right: 20px;
+}
+
+.value {
+    font-size: 1.3rem;
+    font-weight: 700;
 }

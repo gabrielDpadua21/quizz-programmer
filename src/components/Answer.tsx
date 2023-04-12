@@ -6,7 +6,7 @@ interface AnswareProps {
     value: AnswerModel,
     index: number,
     letter: string,
-    color: string
+    background: string
 }
 
 const Answer: React.FC<AnswareProps> = ((props: AnswareProps) => {
@@ -15,17 +15,19 @@ const Answer: React.FC<AnswareProps> = ((props: AnswareProps) => {
     return (
         <>
           <div className={styles.answer}>
-            <div className={styles.front}>
-              <div className={styles.letter}>
-                {props.letter}
+            <div className={styles.content}>
+              <div className={styles.front}>
+                <div className={styles.letter} style={{ backgroundColor: props.background }}>
+                  {props.letter}
+                </div>
+                <div className={styles.value}>
+                  {answer.value}
+                </div>
               </div>
-              <div className={styles.value}>
-                {answer.value}
-              </div>
-            </div>
-            <div className={styles.back}>
+              <div className={styles.back}>
 
-            </div>
+              </div>
+              </div>
           </div>
         </>
     )
