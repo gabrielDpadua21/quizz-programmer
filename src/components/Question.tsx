@@ -3,6 +3,24 @@ import QuestionModel from "@/model/question";
 import Statement from './Statement';
 import Answer from './Answer';
 
+const letters = [
+    {
+        value: 'A',
+        color: '#F2C866'
+    },
+    {
+        value: 'B',
+        color: '#f266ba'
+    },
+    {
+        value: 'C',
+        color: '#85d4f2'
+    },
+    {
+        value: 'D',
+        color: '#bce596'
+    },
+]
 
 interface InterfaceQuestionProps {
     value: QuestionModel
@@ -13,13 +31,14 @@ const Question = (props: InterfaceQuestionProps) => {
 
     const renderAnswers = () => {
         return question.answer.map((answer, index) => {
+            const { value, color } = letters[index];
             return (
                 <Answer 
                     key={index} 
                     value={answer} 
                     index={index} 
-                    letter="A" 
-                    background="#F2C866"
+                    letter={value}
+                    background={color}
                 />
             )
         })
