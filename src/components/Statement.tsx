@@ -1,7 +1,7 @@
 import styles from '../styles/Statement.module.css';
 
 interface StatementProps {
-   text: string   
+   text: string
 }
 
 export default function Statement(props: StatementProps) {
