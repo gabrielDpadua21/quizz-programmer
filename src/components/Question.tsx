@@ -24,6 +24,7 @@ const letters = [
 
 interface InterfaceQuestionProps {
     value: QuestionModel
+    on_response: (index: number) => void
 }
 
 const Question = (props: InterfaceQuestionProps) => {
@@ -39,6 +40,7 @@ const Question = (props: InterfaceQuestionProps) => {
                     index={index} 
                     letter={value}
                     background={color}
+                    on_response={props.on_response}
                 />
             )
         })
