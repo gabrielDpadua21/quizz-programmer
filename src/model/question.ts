@@ -35,6 +35,10 @@ export default class QuestionModel {
         return this.#correct;
     }
 
+    get is_not_responded(): boolean {
+        return !this.is_responded;
+    }
+
     get is_responded(): boolean {
         for (let answer of this.#answer) {
             if (answer.revealed) return true;
@@ -43,7 +47,9 @@ export default class QuestionModel {
     }
 
     respond_with(index: number) {
-        const correct = this.#answer[index].is_correct;
+        
+        const correct = this.#answer[index]?.is_correct || this.#correct;
+
         const answers = this.#answer.map((answer, i) => {
             const seletedAnswer = index === i;
             const shouldRevel = seletedAnswer || answer.is_correct;

@@ -2,6 +2,7 @@ import styles from '../styles/Question.module.css';
 import QuestionModel from "@/model/question";
 import Statement from './Statement';
 import Answer from './Answer';
+import Timer from './Times';
 
 const letters = [
     {
@@ -25,6 +26,7 @@ const letters = [
 interface InterfaceQuestionProps {
     value: QuestionModel
     on_response: (index: number) => void
+    time_lost: () => void
 }
 
 const Question = (props: InterfaceQuestionProps) => {
@@ -50,6 +52,7 @@ const Question = (props: InterfaceQuestionProps) => {
         <>
             <div className={styles.question}>
                 <Statement text={question.question} />
+                <Timer duration={60} time_lost={props.time_lost}/>
                 { renderAnswers() }
             </div>
         </>

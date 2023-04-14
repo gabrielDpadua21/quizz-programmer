@@ -21,11 +21,21 @@ export default function Home() {
     setQuestion(question.respond_with(index));
     console.log(question);
   }
+
+  const time_lost = () => {
+    if(question.is_not_responded) {
+      setQuestion(question.respond_with(-1));
+    }
+  }
   
   return (
     <>
       <div className='root-container'>
-        <Question value={question} on_response={on_response}/>
+        <Question 
+          value={question} 
+          on_response={on_response}
+          time_lost={time_lost}
+        />
       </div>
     </>
   )
