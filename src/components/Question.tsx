@@ -3,6 +3,7 @@ import QuestionModel from "@/model/question";
 import Statement from './Statement';
 import Answer from './Answer';
 import Timer from './Times';
+import Button from './Button';
 
 const letters = [
     {
@@ -58,6 +59,7 @@ const Question = (props: InterfaceQuestionProps) => {
                     time_lost={props.time_lost}
                 />
                 { renderAnswers() }
+                <Button text="Proxima" href="/result"/>
             </div>
         </>
     )
