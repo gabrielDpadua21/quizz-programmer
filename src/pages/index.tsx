@@ -2,7 +2,7 @@ import Question from '@/components/Question'
 import AnswerModel from '@/model/answer'
 import QuestionModel from '@/model/question'
 import { Inter } from 'next/font/google'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -15,7 +15,11 @@ const questionMock = new QuestionModel(1, 'Best Cat', [
 
 export default function Home() {
   const [question, setQuestion] = useState(questionMock);
-  
+  const questionRef = useRef<QuestionModel>();
+
+  useEffect(() => {
+    questionRef.current = question;
+  }, [question])
 
   const on_response = (index: number) => {
     setQuestion(question.respond_with(index));
@@ -23,8 +27,8 @@ export default function Home() {
   }
 
   const time_lost = () => {
-    if(question.is_not_responded) {
-      setQuestion(question.respond_with(-1));
+    if(questionRef.current.is_not_responded) {
+      setQuestion(questionRef.current.respond_with(-1));
     }
   }
   
@@ -35,6 +39,7 @@ export default function Home() {
           value={question} 
           on_response={on_response}
           time_lost={time_lost}
+          time_for_response={50}
         />
       </div>
     </>

@@ -24,9 +24,10 @@ const letters = [
 ]
 
 interface InterfaceQuestionProps {
-    value: QuestionModel
-    on_response: (index: number) => void
-    time_lost: () => void
+    value: QuestionModel;
+    on_response: (index: number) => void;
+    time_for_response?: number;
+    time_lost: () => void;
 }
 
 const Question = (props: InterfaceQuestionProps) => {
@@ -52,7 +53,10 @@ const Question = (props: InterfaceQuestionProps) => {
         <>
             <div className={styles.question}>
                 <Statement text={question.question} />
-                <Timer duration={60} time_lost={props.time_lost}/>
+                <Timer 
+                    duration={props.time_for_response ?? 10} 
+                    time_lost={props.time_lost}
+                />
                 { renderAnswers() }
             </div>
         </>
