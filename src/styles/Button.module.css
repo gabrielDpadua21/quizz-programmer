@@ -13,10 +13,12 @@
     margin-top: 40px;
     cursor: pointer;
     box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease-in-out;
 }
 
 .button button:hover {
     background-color: #bd2eb6;
+    transform: scale(1.1);
 }
 
 .button button:active {

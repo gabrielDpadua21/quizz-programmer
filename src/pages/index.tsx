@@ -1,4 +1,5 @@
 import Question from '@/components/Question'
+import Questionary from '@/components/Questionary'
 import AnswerModel from '@/model/answer'
 import QuestionModel from '@/model/question'
 import { Inter } from 'next/font/google'
@@ -16,26 +17,22 @@ const questionMock = new QuestionModel(1, 'Best Cat', [
 export default function Home() {
   const [question, setQuestion] = useState(questionMock);
   
-
-  const on_response = (index: number) => {
-    setQuestion(question.respond_with(index));
-    console.log(question);
+  const set_question_responded = (question: QuestionModel) => {
+    
   }
 
-  const time_lost = () => {
-    if(question.is_not_responded) {
-      setQuestion(question.respond_with(-1));
-    }
+  const go_next_question = () => {
+    
   }
-  
+ 
   return (
     <>
       <div className='root-container'>
-        <Question 
-          value={question} 
-          on_response={on_response}
-          time_lost={time_lost}
-          time_for_response={50}
+        <Questionary 
+          question={question}
+          last_question={false}
+          set_question_responded={set_question_responded}
+          go_next_question={go_next_question}
         />
       </div>
     </>

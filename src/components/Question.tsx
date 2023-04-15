@@ -59,7 +59,6 @@ const Question = (props: InterfaceQuestionProps) => {
                     time_lost={props.time_lost}
                 />
                 { renderAnswers() }
-                <Button text="Proxima" href="/result"/>
             </div>
         </>
     )
