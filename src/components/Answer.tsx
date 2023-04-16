@@ -14,24 +14,22 @@ interface AnswareProps {
 
 const Answer: React.FC<AnswareProps> = ((props: AnswareProps) => {
     const answer = props.value;
+    const revealAnswer = answer.revealed ? styles.revealed : '';
     return (
         <>
           <div className={styles.answer} onClick={() => props.on_response(props.index)}>
-            <div className={styles.content}>
-              {!answer.revealed ? (
+            <div className={`${revealAnswer} ${styles.content}`}>
                 <Front 
                   styles={styles} 
                   value={answer.value} 
                   background={props.background}
                   letter={props.letter}
                 />
-              ) : (
                 <Back 
                   styles={styles}
                   value={answer.value}
                   is_correct={answer.is_correct}
                 />
-              )}
               </div>
           </div>
         </>
