@@ -2,7 +2,7 @@ import styles from '../styles/Question.module.css';
 import QuestionModel from "@/model/question";
 import Statement from './Statement';
 import Answer from './Answer';
-import Timer from './Times';
+import Timer from './Timer';
 import Button from './Button';
 
 const letters = [

@@ -7,8 +7,7 @@ export default (request: NextApiRequest, response: NextApiResponse) => {
     const question = questions.filter(question => question.id == id)
     if(question.length === 1) {
       const selectedQuestion = question[0].random_answers()
-      const obj = selectedQuestion.respond_with(0)
-      response.status(200).json(obj.to_object());
+      response.status(200).json(selectedQuestion.to_object());
     }
     if(question.length < 1)
       response.status(204).send()

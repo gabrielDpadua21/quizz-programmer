@@ -47,7 +47,7 @@ export default class QuestionModel {
     }
 
     respond_with(index: number) {
-        
+      
         const correct = this.#answer[index]?.is_correct || this.#correct;
 
         const answers = this.#answer.map((answer, i) => {
@@ -81,5 +81,14 @@ export default class QuestionModel {
         correct: this.#correct,
         responded: this.is_responded
       }
+    }
+
+    static from_object(object: any) {
+      return new QuestionModel(
+        object.id,
+        object.question,
+        object.answer.map((aws: any) => AnswerModel.from_object(aws)),
+        object.correct
+      )
     }
 }

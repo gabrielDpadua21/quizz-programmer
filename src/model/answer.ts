@@ -45,4 +45,14 @@ export default class AnswerModel {
       }  
     }
 
+    from_object(obj: any) {
+      this.#value = obj.value;
+      this.#is_correct = obj.is_correct;
+      this.#revealed = obj.revealed
+    }
+
+    static from_object(object: any) {
+      return new AnswerModel(object.value, object.is_correct, object.revealed)
+    }
+
 }
