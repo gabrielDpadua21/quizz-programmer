@@ -3,6 +3,7 @@ import AnswerModel from '@/model/answer'
 import QuestionModel from '@/model/question'
 import { Inter } from 'next/font/google'
 import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -19,6 +20,7 @@ export default function Home() {
   const [question, setQuestion] = useState<QuestionModel>(questionMock);
   const [idsOfQuestions, setIdsOfQuestions] = useState<number[]>([]);
   const [correctAnswers, setCorrectAnswers] = useState<number>(0);
+  const router = useRouter();
   
   const loadQuestionsIds = async () => {
     const response = await fetch(`${BASE_URL}/questionary`);
@@ -39,10 +41,31 @@ export default function Home() {
     setCorrectAnswers(correctAnswers + (correctAnswer ? 1 : 0));
   }
 
-  const go_next_question = () => {
-    
+  const id_next_question = () => {
+    const nextIndex = idsOfQuestions.indexOf(question.id) + 1
+    return idsOfQuestions[nextIndex]
   }
 
+  const go_next_step = () => {
+    const nextId = id_next_question();
+    nextId ? go_next_question(nextId) : finished()
+  }
+
+  const go_next_question = (nextId: number) => {
+    loadQuestion(nextId);
+  }
+
+  const finished = () => {
+    router.push({
+      pathname: '/result',
+      query: {
+        total: idsOfQuestions.length,
+        correct: correctAnswers
+      }
+    })
+  }
+
+  
   useEffect(() => {
     loadQuestionsIds();
   }, [])
@@ -56,15 +79,12 @@ export default function Home() {
       <div className='root-container'>
         <Questionary 
           question={question}
-          last_question={false}
+          last_question={id_next_question() === undefined}
           set_question_responded={set_question_responded}
-          go_next_question={go_next_question}
+          go_next_question={go_next_step}
         />
       </div>
     </>
   )
-}
-function fromObject(object: any): any {
-  throw new Error('Function not implemented.')
 }
 
