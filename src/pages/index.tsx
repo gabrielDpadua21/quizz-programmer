@@ -77,12 +77,14 @@ export default function Home() {
   return (
     <>
       <div className='root-container'>
-        <Questionary 
-          question={question}
-          last_question={id_next_question() === undefined}
-          set_question_responded={set_question_responded}
-          go_next_question={go_next_step}
-        />
+        { question ? (
+          <Questionary 
+            question={question}
+            last_question={id_next_question() === undefined}
+            set_question_responded={set_question_responded}
+            go_next_question={go_next_step}
+          />
+        ) : null }
       </div>
     </>
   )

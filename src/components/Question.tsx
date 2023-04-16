@@ -39,7 +39,7 @@ const Question = (props: InterfaceQuestionProps) => {
             const { value, color } = letters[index];
             return (
                 <Answer 
-                    key={index} 
+                    key={`${question.id}${index}`} 
                     value={answer} 
                     index={index} 
                     letter={value}
@@ -54,7 +54,8 @@ const Question = (props: InterfaceQuestionProps) => {
         <>
             <div className={styles.question}>
                 <Statement text={question.question} />
-                <Timer 
+                <Timer
+                    key={question.id} 
                     duration={props.time_for_response ?? 10} 
                     time_lost={props.time_lost}
                 />
